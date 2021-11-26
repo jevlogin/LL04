@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Assets/Code/Main.cs
+/Assets/Code/CubeMoveController.cs
+/Temp
+/Library
