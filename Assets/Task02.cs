@@ -33,6 +33,7 @@ namespace WORLDGAMEDEVELOPMENT
         ~Task02()
         {
             _cts.Cancel();
+            _cts.Dispose();
         }
 
         #endregion
