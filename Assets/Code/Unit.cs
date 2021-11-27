@@ -45,7 +45,6 @@ namespace WORLDGAMEDEVELOPMENT
                 SetTextHealthUI(_health);
                 _timeHealing -= Time.deltaTime;
                 yield return new WaitForSeconds(0.5f);
-                //_buttonHealing.onClick.RemoveListener(RecieveHealing);
             }
             yield break;
         }
