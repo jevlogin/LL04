@@ -8,6 +8,8 @@ namespace WORLDGAMEDEVELOPMENT
 {
     public sealed class Unit : MonoBehaviour
     {
+        #region Fields
+
         [SerializeField] private int _health = 80;
         [SerializeField] private Button _buttonHealing;
         [SerializeField] private TMP_Text _textHealing;
@@ -17,16 +19,31 @@ namespace WORLDGAMEDEVELOPMENT
         private int _maxHealth = 100;
         private float _timeHealing = 3.0f;
 
+        #endregion
+
+
+        #region UnityMethods
+
         private void Start()
         {
             _buttonHealing.onClick.AddListener(RecieveHealing);
             SetTextHealthUI(_health);
         }
 
+        #endregion
+
+
+        #region ClassLifeCycles
+
         ~Unit()
         {
             _buttonHealing.onClick.RemoveListener(RecieveHealing);
         }
+
+        #endregion
+
+
+        #region Methods
 
         private void RecieveHealing()
         {
@@ -53,5 +70,7 @@ namespace WORLDGAMEDEVELOPMENT
         {
             _textHealing.text = health.ToString();
         }
+
+        #endregion
     }
 }
