@@ -41,20 +41,20 @@ namespace WORLDGAMEDEVELOPMENT
 
         private async Task Tasks01(CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             await Task.Delay(1000);
             Debug.Log("End Task");
-            cancellationToken.ThrowIfCancellationRequested();
         }
 
         private async Task Tasks02(CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             Debug.Log($"Do - {Time.frameCount}");
             for (int i = 0; i < 100; i++)
             {
                 await Task.Yield();
             }
             Debug.Log($"After - {Time.frameCount}");
-            cancellationToken.ThrowIfCancellationRequested();
         }
 
         #endregion
