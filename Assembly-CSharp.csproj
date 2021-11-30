@@ -103,6 +103,9 @@
     <Compile Include="Assets\Code\Lesson01\Task03.cs" />
     <Compile Include="Assets\Code\Lesson02\Lesson02Task01.cs" />
     <Compile Include="Assets\Code\Lesson02\IntJob.cs" />
+    <Compile Include="Assets\Code\Lesson02\Lesson02Task02.cs" />
+    <Compile Include="Assets\Code\Lesson02\FinalPositionsJob.cs" />
+    <Compile Include="Assets\Code\Helper\Extentions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

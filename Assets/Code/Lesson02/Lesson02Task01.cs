@@ -13,9 +13,10 @@ namespace WORLDGAMEDEVELOPMENT
     {
         #region Fields
         
-        private NativeArray<int> _dataArray;
-        private List<IDisposable> _disposableList;
         [SerializeField] private int _lengthArray = 100;
+
+        private List<IDisposable> _disposableList;
+        private NativeArray<int> _dataArray;
 
         #endregion
 
@@ -35,16 +36,20 @@ namespace WORLDGAMEDEVELOPMENT
         private void Start()
         {
             Initialize();
+
             IntJob intJob = new IntJob()
             {
                 Data = _dataArray
             };
+
             JobHandle handle = intJob.Schedule();
             handle.Complete();
+
             foreach (var data in _dataArray)
             {
                 Debug.Log(data);
             }
+
             if (handle.IsCompleted)
             {
                 _disposableList.Remove(_dataArray);
@@ -78,10 +83,12 @@ namespace WORLDGAMEDEVELOPMENT
         {
             foreach (var dispose in _disposableList)
             {
-                dispose?.Dispose();
+                dispose.Dispose();
             }
-        } 
-        
+            _disposableList.Clear();
+
+        }
+
         #endregion
     } 
 }
