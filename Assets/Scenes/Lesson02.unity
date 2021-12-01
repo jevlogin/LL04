@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a011ad7402c574f9d3117392a43b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _legth: 2
+  _legth: 5
   _prefab: {fileID: 5598678848059391372, guid: 3d7275735c40a684db7b30d4ba6ce752, type: 3}
   _angleRotation: 2.7
   _speedRotation: 1.33
