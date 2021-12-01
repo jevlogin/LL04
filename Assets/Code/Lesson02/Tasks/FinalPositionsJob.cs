@@ -9,9 +9,9 @@ namespace WORLDGAMEDEVELOPMENT
     [BurstCompile]
     public struct FinalPositionsJob : IJobParallelFor
     {
-        public NativeArray<Vector3> Positions;
-        public NativeArray<Vector3> Velocities;
-        public NativeArray<Vector3> FinalPositions;
+        [ReadOnly] public NativeArray<Vector3> Positions;
+        [ReadOnly] public NativeArray<Vector3> Velocities;
+        [WriteOnly] public NativeArray<Vector3> FinalPositions;
 
         public void Execute(int index)
         {

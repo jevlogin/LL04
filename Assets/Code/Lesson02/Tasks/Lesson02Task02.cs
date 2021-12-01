@@ -13,11 +13,20 @@ namespace WORLDGAMEDEVELOPMENT
         #region Fields
 
         [SerializeField] private int _legth;
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private float _angleRotation;
+        [SerializeField] private float _speedRotation;
 
         private List<IDisposable> _disposableList;
         private NativeArray<Vector3> _positions;
         private NativeArray<Vector3> _velocities;
         private NativeArray<Vector3> _finalPositions;
+        private TransformAccessArray _transformAccessArray;
+
+        /*****/
+        private NativeArray<float> _angle;
+        private NativeArray<Quaternion> _originRotation;
+        private Transform[] _transforms;
 
         #endregion
 
@@ -37,7 +46,7 @@ namespace WORLDGAMEDEVELOPMENT
         private void Start()
         {
             Initialization();
-            
+
             FinalPositionsJob finalPositionsJob = new FinalPositionsJob()
             {
                 Positions = _positions,
@@ -55,6 +64,45 @@ namespace WORLDGAMEDEVELOPMENT
                     Debug.Log(data);
                 }
             }
+
+            _transforms = new Transform[_legth];
+
+            for (int i = 0; i < _legth; i++)
+            {
+                _transforms[i] = Instantiate(_prefab).transform;
+            }
+
+            _transformAccessArray = new TransformAccessArray(_transforms);
+            _disposableList.Add(_transformAccessArray);
+
+            var arrayAngle = new float[_legth];
+            for (int i = 0; i < _legth; i++)
+            {
+                arrayAngle[i] = i;
+            }
+            _angle = new NativeArray<float>(arrayAngle, Allocator.Persistent);
+            _disposableList.Add(_angle);
+
+            var rotations = new Quaternion[_transforms.Length];
+            for (int i = 0; i < rotations.Length; i++)
+            {
+                rotations[i] = _transforms[i].rotation;
+            }
+
+            _originRotation = new NativeArray<Quaternion>(rotations, Allocator.Persistent);
+            _disposableList.Add(_originRotation);
+        }
+
+
+        private void Update()
+        {
+            RotateAroundTransformJob rotateAround = new RotateAroundTransformJob()
+            {
+                Angle = _angle,
+                OriginRotation = _originRotation,
+            };
+            var handleRotation = rotateAround.Schedule(_transformAccessArray);
+            handleRotation.Complete();
         }
 
         #endregion
@@ -69,8 +117,6 @@ namespace WORLDGAMEDEVELOPMENT
             _positions = new NativeArray<Vector3>(vector3Positions, Allocator.Persistent);
             _disposableList.Add(_positions);
 
-            
-
             Vector3[] vector3Velocities = new Vector3[_legth].ReturnNewRandomVector3MinMaxByte();
             _velocities = new NativeArray<Vector3>(vector3Velocities, Allocator.Persistent);
             _disposableList.Add(_velocities);
@@ -78,7 +124,10 @@ namespace WORLDGAMEDEVELOPMENT
             Vector3[] vector3FinalPositions = new Vector3[_legth];
             _finalPositions = new NativeArray<Vector3>(vector3FinalPositions, Allocator.Persistent);
             _disposableList.Add(_finalPositions);
-        } 
+
+            
+
+        }
 
         #endregion
 
