@@ -599,10 +599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c9142ba8e44e843b08da4ea5d2d1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 80
+  _health: -33
   _buttonHealing: {fileID: 665995545}
   _textHealing: {fileID: 304199915}
   _healthHealing: 5
+  _isHealing: 0
 --- !u!1 &665995543
 GameObject:
   m_ObjectHideFlags: 0
