@@ -65,7 +65,6 @@ namespace WORLDGAMEDEVELOPMENT
             {
                 _playerName = DEFAULT_PLAYER_NAME + _hostId;
             }
-            Debug.Log($"{PlayerName}");
 
             _connectionId = NetworkTransport.Connect(_hostId, "127.0.0.1", _serverPort, 0, out _error);
 
@@ -82,17 +81,16 @@ namespace WORLDGAMEDEVELOPMENT
 
         private IEnumerator SendPLayerNameToServer()
         {
-            if (!_isActualConnected)
+            while (!_isActualConnected)
             {
-                yield return new WaitForFixedUpdate(); 
+                yield return new WaitForEndOfFrame();
             }
             var setPlayerName = MessageIdentifier.SetName + PlayerName;
-            Debug.Log(setPlayerName);
 
             byte[] buffer = Encoding.Unicode.GetBytes(setPlayerName);
 
-            NetworkTransport.Send(_hostId, _connectionId, _reliableChannel, buffer, buffer.Length * sizeof(char), out _error);
-            
+            NetworkTransport.Send(_hostId, _connectionId, _reliableChannel, buffer, setPlayerName.Length * sizeof(char), out _error);
+
             if ((NetworkError)_error != NetworkError.Ok)
             {
                 Debug.Log((NetworkError)_error);
@@ -147,7 +145,7 @@ namespace WORLDGAMEDEVELOPMENT
 
                     case NetworkEventType.DisconnectEvent:
                         _isConnected = false;
-                        _isActualConnected=false;
+                        _isActualConnected = false;
                         OnMessageReceive?.Invoke($"You have been disconnected from server.");
                         Debug.Log($"You have been disconnected from server.");
                         break;

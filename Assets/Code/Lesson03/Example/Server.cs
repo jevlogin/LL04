@@ -91,19 +91,15 @@ namespace WORLDGAMEDEVELOPMENT
                         {
                             ident += message[i];
                         }
-                        Debug.Log(ident);
-                        if (ident == MessageIdentifier.SetName)
+                        var name = message.Trim(ident.ToCharArray());
+
+                        if (ident.Equals(MessageIdentifier.SetName))
                         {
-                            string name = string.Empty;
-                            for (int i = 4; i < message.Length; i++)
-                            {
-                                name += message[i];
-                            }
                             if (_playerNameIds.ContainsKey(connectionId))
                             {
                                 _playerNameIds[connectionId] = name;
-                                Debug.Log($"name = {name}");
-                                Debug.Log($"_playerNameIds = {_playerNameIds[connectionId]}");
+                                SendMessageToAll($"name = {name}");
+                                SendMessageToAll($"_playerNameIds = {_playerNameIds[connectionId]}");
                             }
                             else
                             {
@@ -112,16 +108,25 @@ namespace WORLDGAMEDEVELOPMENT
                         }
                         else
                         {
-                            SendMessageToAll($"PlayerServer {connectionId}: { message}");
+                            SendMessageToAll($"{_playerNameIds[connectionId]}: { message}");
                         }
-                        Debug.Log($"PlayerServer {connectionId}: {message}");
+                        Debug.Log($"{_playerNameIds[connectionId]}: {message}");
 
                         break;
 
                     case NetworkEventType.ConnectEvent:
                         _connectionIDs.Add(connectionId);
-                        SendMessageToAll($"Player {connectionId} has connected");
-                        Debug.Log($"Player {connectionId} has connected");
+
+                        if (_playerNameIds.ContainsKey(connectionId))
+                        {
+                            SendMessageToAll($"{_playerNameIds[connectionId]} has connected");
+                            Debug.Log($"{_playerNameIds[connectionId]} has connected");
+                        }
+                        else
+                        {
+                            SendMessageToAll($"Player {connectionId} has connected");
+                            Debug.Log($"Player {connectionId} has connected");
+                        }
                         break;
 
                     case NetworkEventType.DisconnectEvent:
