@@ -2,26 +2,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using UnityEngine.Networking;
-using System.Linq;
+
 
 namespace WORLDGAMEDEVELOPMENT
 {
     public sealed class Server : MonoBehaviour
     {
+        #region PrivateFields
+        
         private const int MAX_CONNECTION = 10;
+
+        #endregion
+
+        
+        #region Fields
+        
+        [SerializeField] private List<int> _connectionIDs = new List<int>();
+        [SerializeField] private Dictionary<int, string> _playerNameIds = new Dictionary<int, string>();
+
         private int _port = 5805;
         private int _hostId;
         private int _reliableChannel;
         private bool _isStarted = false;
         private byte _error;
-        [SerializeField] private List<int> _connectionIDs = new List<int>();
-        [SerializeField] private Dictionary<int, string> _playerNameIds = new Dictionary<int, string>();
 
+        #endregion
+
+        
+        #region ClassLifeCycles
+        
         private void OnDestroy()
         {
             _connectionIDs.Clear();
             _playerNameIds.Clear();
         }
+
+        #endregion
+
+
+        #region UnityMethods
+
+        private void Update()
+        {
+            if (!_isStarted)
+            {
+                return;
+            }
+
+            LogicServer();
+        }
+
+        #endregion
+
+
+        #region Methods
 
         public void StartServer()
         {
@@ -63,13 +97,8 @@ namespace WORLDGAMEDEVELOPMENT
             }
         }
 
-        private void Update()
+        private void LogicServer()
         {
-            if (!_isStarted)
-            {
-                return;
-            }
-
             int recHostId;
             int connectionId;
             int channelId;
@@ -78,7 +107,6 @@ namespace WORLDGAMEDEVELOPMENT
             int dataSize;
 
             NetworkEventType recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, recBuffer, bufferSize, out dataSize, out _error);
-
 
             while (recData != NetworkEventType.Nothing)
             {
@@ -143,5 +171,7 @@ namespace WORLDGAMEDEVELOPMENT
                 recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, recBuffer, bufferSize, out dataSize, out _error);
             }
         }
+
+        #endregion
     }
 }

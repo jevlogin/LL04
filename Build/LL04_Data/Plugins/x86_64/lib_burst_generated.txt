@@ -109,9 +109,14 @@ Library: lib_burst_generated
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\com.unity.multiplayer-hlapi.Runtime.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.Burst.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Poly2Tri.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Csg.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.KdTree.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Stl.dll
 --assembly-folder=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
@@ -233,9 +238,14 @@ Library: lib_burst_generated
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\com.unity.multiplayer-hlapi.Runtime.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.Burst.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Poly2Tri.dll
 --root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Csg.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.KdTree.dll
+--root-assembly=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Stl.dll
 --assembly-folder=F:\UnityProjects\LL04\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
